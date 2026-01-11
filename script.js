@@ -1,15 +1,15 @@
 // --- Config: Add your images here ---
 const galleryData = [
-    ["https://files.catbox.moe/b7fjow.jpg"],
-    ["https://files.catbox.moe/koi674.jpg"],
-    ["https://files.catbox.moe/rd8xpu.jpg","https://files.catbox.moe/8dotq5.jpg"],
-    ["https://files.catbox.moe/1fdgxf.jpg"],
-    ["https://files.catbox.moe/mlylg9.jpg", "https://files.catbox.moe/3wnulf.jpg"],
-    ["https://files.catbox.moe/fxpgeo.jpg", "https://files.catbox.moe/8tq4in.jpg"],
-    ["https://files.catbox.moe/wxr394.png", "https://files.catbox.moe/n6janm.jpg"],
-    ["https://files.catbox.moe/hksvj8.jpg"],
-    ["https://files.catbox.moe/69jvj1.jpg"],
-    ["https://files.catbox.moe/r57qhf.jpg","https://files.catbox.moe/ely4dd.jpg"],
+  ["https://files.catbox.moe/b7fjow.jpg"],
+  ["https://files.catbox.moe/koi674.jpg"],
+  ["https://files.catbox.moe/rd8xpu.jpg","https://files.catbox.moe/8dotq5.jpg"],
+  ["https://files.catbox.moe/1fdgxf.jpg"],
+  ["https://files.catbox.moe/mlylg9.jpg", "https://files.catbox.moe/3wnulf.jpg"],
+  ["https://files.catbox.moe/fxpgeo.jpg", "https://files.catbox.moe/8tq4in.jpg"],
+  ["https://files.catbox.moe/wxr394.png", "https://files.catbox.moe/n6janm.jpg"],
+  ["https://files.catbox.moe/hksvj8.jpg"],
+  ["https://files.catbox.moe/69jvj1.jpg"],
+  ["https://files.catbox.moe/r57qhf.jpg","https://files.catbox.moe/ely4dd.jpg"],
 ];
 
 // --- Grab elements ---
@@ -39,14 +39,14 @@ window.addEventListener("load", () => {
 
 // --- Generate posts dynamically ---
 function generateGallery() {
-  galleryData.forEach((images, i) => {
+  galleryData.forEach((images) => {
     const post = document.createElement("div");
     post.className = "post";
     post.dataset.images = images.join(",");
 
     const img = document.createElement("img");
     img.src = images[0];
-    img.alt = `Artwork ${i+1}`;
+    img.alt = "Artwork";
     img.className = "thumb";
     post.appendChild(img);
 
@@ -58,17 +58,16 @@ function generateGallery() {
       post.appendChild(icon);
     }
 
-    gallery.appendChild(post);
-    posts.push(post);
-  });
-
-  // Add click events to open lightbox
-  posts.forEach((post, i) => {
-    post.querySelector(".thumb").addEventListener("click", () => {
-      postIndex = i;
+    // Click listener for this post
+    img.addEventListener("click", () => {
+      // Get the index of this post in the current visual order
+      postIndex = posts.indexOf(post);
       openPost();
       lb.style.display = "flex";
     });
+
+    gallery.appendChild(post);
+    posts.push(post);
   });
 
   // Re-sort posts on window resize
@@ -154,4 +153,3 @@ document.addEventListener("keydown", e => {
 // --- Close lightbox ---
 closeBtn.addEventListener("click", () => { lb.style.display = "none"; });
 lb.addEventListener("click", e => { if (e.target === lb) lb.style.display = "none"; });
-
