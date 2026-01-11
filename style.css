@@ -1,0 +1,234 @@
+/* --- Reset / Global --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0e0e0e;
+  color: #eaeaea;
+  line-height: 1.6;
+}
+
+/* --- Header / Banner --- */
+header {
+  text-align: center;
+  padding: 0rem 0rem 0.5rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+header p {
+  margin-top: 0.5rem;
+  color: #9a9a9a;
+}
+
+/* --- Banner --- */
+.banner {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 120px;
+  }
+}
+
+/* --- Gallery: CSS Masonry --- */
+.gallery {
+  column-count: 5;
+  column-gap: 0.8rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+   opacity: 0;          /* hide initially */
+  transition: opacity 0.4s ease-in-out; /* fade-in smoothly */
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+/* --- Posts --- */
+.post {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+/* Multi-image icon */
+.multi-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 1rem;
+  padding: 0 0.1rem;
+  border-radius: 1.5px;
+  pointer-events: none;
+}
+
+/* --- Images --- */
+.post img.thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #1a1a1a;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post img.thumb:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* --- Lightbox --- */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+  touch-action: pan-y;
+}
+
+/* Image */
+#lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* --- Close Button --- */
+#close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#close:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* --- Side arrows (post navigation) --- */
+#post-prev,
+#post-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
+  color: #000; /* arrow color */
+  -webkit-text-stroke: 1px #fff; /* white outline for the arrow */
+  text-stroke: 1px #fff; /* fallback for some browsers */
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5); /* subtle shadow */
+  transition: background 0.2s, transform 0.2s;
+}
+
+#post-prev:hover,
+#post-next:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+#post-prev { left: 10px; }
+#post-next { right: 10px; }
+
+
+
+/* --- Bottom Arrows + Counter (Multi-Image) --- */
+.img-nav {
+  display: none; /* shown only for multi-image posts */
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.img-nav button {
+  font-size: 1.5rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.img-nav button:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+#counter {
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+footer a {
+  color: #eaeaea;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
